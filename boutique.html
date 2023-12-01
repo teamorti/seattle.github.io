@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Boutique - Seattle RP</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, blue, violet) fixed; /* Changement du dégradé pour s'étendre sur toute la page */
+            background-size: cover; /* Ajustement pour éviter la répétition */
+            animation: gradientAnimation 15s infinite alternate;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        header {
+        text-align: center;
+        position: relative;
+        display: flex; /* Ajout de cette ligne pour activer le modèle de boîte flexible */
+        justify-content: space-between; /* Ajout de cette ligne pour répartir l'espace entre les éléments */
+        align-items: center; /* Ajout de cette ligne pour centrer verticalement les éléments */
+    }
+
+    img.discord {
+        width: 80px;
+        height: auto;
+        cursor: pointer;
+        margin-left: 20px;
+    }
+    img.twitter {
+        width: 80px;
+        height: auto;
+        cursor: pointer;
+        margin-left: -540px;
+    }
+    img.banner {
+        max-width: 20%; /* Ajustez la largeur de la bannière selon vos besoins */
+        height: auto;
+        margin-right: 780px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(to top, blue, violet);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        perspective: 5px;
+    }
+
+    nav div {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 5px; /* Ajustez la valeur de l'espacement ici */
+        margin: 0 5px; /* Ajustez la valeur de la marge ici */
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 5px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+
+        .cart img {
+            color: white;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+
+        .cart span {
+            color: black;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+
+        section {
+            text-align: center;
+            padding: 50px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .product {
+            width: 30%;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-info {
+            padding: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00aaff;
+        }
+
+        a {
+            color: #00aaff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+      <a href="https://discord.gg/kBGAAMZPjj" target="_blank">
+          <img src="D:\site web\image\discord-logo-B02E5FBA04-seeklogo.com.png"alt="Discord" class="discord">
+      </a>
+      <a href="https://twitter.com/Seattle__RP"target="-_blank">
+        <img src="D:\site web\image\Logo_of_Twitter.svg.webp" alt="twitter" class="twitter">
+
+      </a>
+        <img src="D:\site web\image\banniere_seattle.png" alt="Bannière" class="banner">
+    </header>
+
+    <nav>
+        <div>
+            <a href="accueil.html">Accueil</a>
+            <a href="boutique.html">Boutique</a>
+            <a href="candidature.html">Candidature</a>
+            <a href="equipe.html">Equipe</a>
+            <a href="a-propos.html">À propos</a>
+        </div>
+        <div class="cart">
+            <a href="panier.html">
+                <img src="D:\site web\image\126083.png" alt="Panier">
+                <span id="cart-total">0,00 €</span>
+            </a>
+        </div>
+    </nav>
+
+
+    <section>
+        <h2>Notre Boutique</h2>
+        <div class="product-container">
+            <!-- Produit 1 -->
+            <div class="product" onclick="addToCart(5.00, 'Caisse en bronze ','boite en bronze.jpg')">
+                <img src="D:\site web\image\boite en bronze.jpg" alt="Produit 1">
+                <div class="product-info">
+                    <h3>Caisse en bronze</h3>
+                    <p>450 Seattle Coins + Une voiture random</p>
+                    <span class="price">5,00 €</span>
+                </div>
+            </div>
+
+            <!-- Produit 2 -->
+            <div class="product" onclick="addToCart(15.00, 'Caisse en Argent', 'boite en argent.jpg')">
+                <img src="D:\site web\image\boite en argent.jpg">
+                <div class="product-info">
+                    <h3>Caisse en Argent</h3>
+                    <p>2950 Seattle Coin + Une voiture Random</p>
+                    <span class="price">15,00 €</span>
+                </div>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="product" onclick="addToCart(25.00, 'Caisse en Or', 'boite en or.jpg')">
+                <img src="D:\site web\image\boite en or.jpg" alt="Produit 3">
+                <div class="product-info">
+                    <h3>Caisse en Or</h3>
+                    <p>4600 Seattle Coins + Voiture Import de ton choix OU Arme Permanent</p>
+                    <span class="price">25,00 €</span>
+                </div>
+            </div>
+
+            <!-- Autres produits... -->
+        </div>
+    </section>
+
+    <script>
+        // Fonctions JavaScript ici...
+
+        // Fonction addToCart mise à jour
+        function addToCart(price, productName, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ productName, price, image });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+            alert("Article ajouté au panier ! Prix : " + price + " €");
+        }
+
+        function updateCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartTotal = document.getElementById('cart-total');
+            let total = 0;
+            cart.forEach((item) => {
+                total += item.price;
+            });
+            cartTotal.textContent = `${total.toFixed(2)} €`;
+        }
+
+        updateCart();
+    </script>
+</body>
+
+</html>

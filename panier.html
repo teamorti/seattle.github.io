@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Panier - Seattle RP</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #006ead;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #006ead;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #004269;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            position: fixed;
+            top: 0;
+        }
+
+        nav div {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        section {
+            text-align: center;
+            padding: 50px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .cart-item {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-total span {
+            color: #00aaff;
+        }
+
+        .buy-button {
+            background-color: #00aaff;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #0077cc;
+        }
+
+        .delete {
+            cursor: pointer;
+            color: #ff0000;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div>
+            <a href="accueil.html">Accueil</a>
+            <a href="boutique.html">Boutique</a>
+            <a href="candidature.html">Candidature</a>
+            <a href="equipe.html">Equipe</a>
+            <a href="a-propos.html">À propos</a>
+        </div>
+    </nav>
+
+    <section>
+        <h2>Votre Panier</h2>
+        <div class="cart-items" id="cart-items">
+            <!-- Les articles du panier seront affichés ici -->
+        </div>
+        <div class="cart-total" id="cart-total">
+            <span>Total: 0,00 €</span>
+            <button class="buy-button">Acheter</button>
+        </div>
+    </section>
+
+    <script>
+        // Fonction pour mettre à jour le panier
+        function updateCart() {
+            // Récupérer le panier depuis le stockage local
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Sélectionner l'élément du panier
+            let cartItems = document.getElementById('cart-items');
+            let cartTotal = document.getElementById('cart-total');
+
+            // Réinitialiser le contenu du panier
+            cartItems.innerHTML = '';
+
+            // Variables pour calculer le total du panier
+            let total = 0;
+
+            // Parcourir les articles du panier
+            cart.forEach((item, index) => {
+                // Créer un élément pour chaque article
+                let cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                <img src="D:/site web/image/${item.image}" alt="${item.productName}">
+
+                    <div>
+                        <p>${item.productName}</p>
+                        <p>${item.price.toFixed(2)} €</p>
+                    </div>
+                    <span class="delete" onclick="removeFromCart(${index})">&#128465;</span>
+                `;
+
+                // Ajouter l'élément au panier
+                cartItems.appendChild(cartItem);
+
+                // Ajouter le prix à total
+                total += item.price;
+            });
+
+            // Mettre à jour l'affichage du total du panier
+            cartTotal.innerHTML = `<span>Total: ${total.toFixed(2)} €</span><button class="buy-button">Acheter</button>`;
+        }
+
+        // Fonction pour supprimer un article du panier
+        function removeFromCart(index) {
+            // Récupérer le panier depuis le stockage local
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Supprimer l'article à l'index spécifié
+            cart.splice(index, 1);
+
+            // Mettre à jour le panier dans le stockage local
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Mettre à jour l'affichage du panier
+            updateCart();
+        }
+
+        // Mettre à jour le panier au chargement de la page
+        updateCart();
+    </script>
+</body>
+
+</html>
