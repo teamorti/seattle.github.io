@@ -6,149 +6,144 @@
     <title>Boutique - Seattle RP</title>
     <style>
     body {
-   font-family: 'Open Sans', sans-serif;
-   margin: 0;
-   padding: 0;
-   background: linear-gradient(to bottom, blue, violet) fixed;
-   background-size: cover;
-   animation: gradientAnimation 15s infinite alternate;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, blue, violet) fixed; /* Changement du dégradé pour s'étendre sur toute la page */
+        background-size: cover; /* Ajustement pour éviter la répétition */
+        animation: gradientAnimation 15s infinite alternate;
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    header {
+    text-align: center;
+    position: relative;
+    display: flex; /* Ajout de cette ligne pour activer le modèle de boîte flexible */
+    justify-content: space-between; /* Ajout de cette ligne pour répartir l'espace entre les éléments */
+    align-items: center; /* Ajout de cette ligne pour centrer verticalement les éléments */
 }
 
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
+img.discord {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    margin-left: 20px;
+}
+img.twitter {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    margin-left: -540px;
+}
+img.banner {
+    max-width: 20%; /* Ajustez la largeur de la bannière selon vos besoins */
+    height: auto;
+    margin-right: 790px;
+}
 
-        header {
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to top, blue, violet);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    perspective: 5px;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 5px; /* Ajustez la valeur de l'espacement ici */
+    margin: 0 5px; /* Ajustez la valeur de la marge ici */
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+
+    .cart img {
+        color: white;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    .cart span {
+        color: black;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+
+    section {
         text-align: center;
-        position: relative;
-        display: flex; /* Ajout de cette ligne pour activer le modèle de boîte flexible */
-        justify-content: space-between; /* Ajout de cette ligne pour répartir l'espace entre les éléments */
-        align-items: center; /* Ajout de cette ligne pour centrer verticalement les éléments */
+        padding: 50px;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     }
 
-    img.discord {
-        width: 80px;
-        height: auto;
-        cursor: pointer;
-        margin-left: 20px;
-    }
-    img.twitter {
-        width: 80px;
-        height: auto;
-        cursor: pointer;
-        margin-left: -540px;
-    }
-    img.banner {
-        max-width: 20%; /* Ajustez la largeur de la bannière selon vos besoins */
-        height: auto;
-        margin-right: 790px;
-    }
-
-    nav {
+    .product-container {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: linear-gradient(to top, blue, violet);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        perspective: 5px;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        max-width: 1920px;
+        margin: 0 auto;
+        width: 100%;
     }
 
-    nav div {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
+    .product {
+        width: 30%;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
     }
 
-    nav a {
-        color: #fff;
+    .product img {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .product-info {
+        padding: 10px;
+    }
+
+    .price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #00aaff;
+    }
+
+    a {
+        color: #00aaff;
         text-decoration: none;
-        padding: 10px 5px; /* Ajustez la valeur de l'espacement ici */
-        margin: 0 5px; /* Ajustez la valeur de la marge ici */
-        font-size: 16px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        border-radius: 5px;
-        transition: background-color 0.3s, box-shadow 0.3s;
+        font-weight: bold;
     }
 
+    a:hover {
+        text-decoration: underline;
+    }
 
-        .cart img {
-            color: white;
-            width: 30px;
-            height: 30px;
-            margin-right: 5px;
-        }
-
-        .cart span {
-            color: black;
-            font-size: 13px;
-            font-weight: bold;
-        }
-        .product-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            max-width: 1920px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .product {
-            width: 30%;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .product img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .product-info {
-            padding: 10px;
-        }
-
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #00aaff;
-        }
-
-        a {
-            color: #00aaff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-        section.form-section {
-      text-align: center;
-      max-width: 600px; /* Ajustez la largeur selon vos besoins */
-      margin: 0 auto;
-  }
-
-  form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-  }
 
         label {
             color: #fff;
@@ -183,15 +178,13 @@
 
 <body>
     <header>
-      <a href="https://discord.gg/kBGAAMZPjj" target="_blank">
-          <img src="image\discord-logo-B02E5FBA04-seeklogo.com.png"alt="Discord" class="discord">
-      </a>
-      <a href="https://twitter.com/Seattle__RP"target="-_blank">
-        <img src="image\Logo_of_Twitter.svg.webp" alt="twitter" class="twitter">
-
-      </a>
-      <img src="image\banniere_seattle.png" alt="Bannière" class="banner">
-  </header>
+        <a href="https://discord.gg/kBGAAMZPjj" target="_blank">
+            <img src="image\discord-logo-B02E5FBA04-seeklogo.com.png" alt="Discord" class="discord">
+        </a>
+        <a href="https://twitter.com/Seattle__RP" target="_blank">
+            <img src="image\Logo_of_Twitter.svg.webp" alt="twitter" class="twitter">
+        </a>
+        <img src="image\banniere_seattle.png" alt="Bannière" class="banner">
     </header>
 
     <nav>
@@ -209,94 +202,79 @@
             </a>
         </div>
     </nav>
+
     <section class="form-section">
-       <h1>Candidature Staff</h1>
-       <form action="https://formspree.io/f/xdorrjoq" method="POST">
-           <label for="prenom">Prénom :</label>
-           <input type="text" id="prenom" name="prenom" required>
+        <h1>Candidature Staff</h1>
+        <form action="https://formspree.io/f/xdorrjoq" method="POST">
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
 
-           <label for="nom">Nom :</label>
-           <input type="text" id="nom" name="nom" required>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
 
-           <label for="age">Âge :</label>
-           <input type="text" id="age" name="age" required>
+            <label for="age">Âge :</label>
+            <input type="text" id="age" name="age" required>
 
-           <label for="heure-rp">Heure de RP :</label>
-           <input type="text" id="heure-rp" name="heure-rp" required>
+            <label for="heure-rp">Heure de RP :</label>
+            <input type="text" id="heure-rp" name="heure-rp" required>
 
-           <label for="experience-rp">Expérience RP :</label>
-           <input type="text" id="experience-rp" name="experience-rp" required>
+            <label for="experience-rp">Expérience RP :</label>
+            <input type="text" id="experience-rp" name="experience-rp" required>
 
-           <label for="pourquoi-vous">Pourquoi vous ? :</label>
-           <textarea id="pourquoi-vous" name="pourquoi-vous" required></textarea>
+            <label for="pourquoi-vous">Pourquoi vous ? :</label>
+            <textarea id="pourquoi-vous" name="pourquoi-vous" required></textarea>
 
-           <label for="motivation">Motivation :</label>
-           <textarea id="motivation" name="motivation" required></textarea>
+            <label for="motivation">Motivation :</label>
+            <textarea id="motivation" name="motivation" required></textarea>
 
-           <button type="submit">Envoyer</button>
-       </form>
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+
     <script>
 
-        function formSubmit() {
-            alert("Formulaire envoyé !");
-            // Réinitialiser les champs du formulaire
-            document.getElementById("prenom").value = "";
-            document.getElementById("nom").value = "";
-            document.getElementById("age").value = "";
-            document.getElementById("heure-rp").value = "";
-            document.getElementById("experience-rp").value = "";
-            document.getElementById("pourquoi-vous").value = "";
-            document.getElementById("motivation").value = "";
+        // Updated addToCart function to update the cart total
+        function addToCart(price, productName, image) {
+            // Récupérer le panier depuis le stockage local
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Rediriger vers la page d'accueil
-            window.location.href = "accueil.html";
+            // Ajouter l'article au panier
+            cart.push({ productName, price, image });
+
+            // Mettre à jour le panier dans le stockage local
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Mettre à jour l'affichage du panier
+            updateCart();
+
+            // Afficher une alerte pour informer que l'article a été ajouté au panier
+            alert("Article ajouté au panier ! Prix : " + price + " €");
         }
 
+        // Fonction pour mettre à jour le panier
+        function updateCart() {
+            // Récupérer le panier depuis le stockage local
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-           // Updated addToCart function to update the cart total
-           function addToCart(price, productName, image) {
-               // Récupérer le panier depuis le stockage local
-               let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Sélectionner l'élément du panier
+            let cartTotal = document.getElementById('cart-total');
 
-               // Ajouter l'article au panier
-               cart.push({ productName, price, image });
+            // Variables pour calculer le total du panier
+            let total = 0;
 
-               // Mettre à jour le panier dans le stockage local
-               localStorage.setItem('cart', JSON.stringify(cart));
+            // Parcourir les articles du panier
+            cart.forEach((item) => {
+                // Ajouter le prix à total
+                total += item.price;
+            });
 
-               // Mettre à jour l'affichage du panier
-               updateCart();
+            // Mettre à jour l'affichage du total du panier
+            cartTotal.textContent = `${total.toFixed(2)} €`;
+        }
 
-               // Afficher une alerte pour informer que l'article a été ajouté au panier
-               alert("Article ajouté au panier ! Prix : " + price + " €");
-           }
-
-           // Fonction pour mettre à jour le panier
-           function updateCart() {
-               // Récupérer le panier depuis le stockage local
-               let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-               // Sélectionner l'élément du panier
-               let cartTotal = document.getElementById('cart-total');
-
-               // Variables pour calculer le total du panier
-               let total = 0;
-
-               // Parcourir les articles du panier
-               cart.forEach((item) => {
-                   // Ajouter le prix à total
-                   total += item.price;
-               });
-
-               // Mettre à jour l'affichage du total du panier
-               cartTotal.textContent = `${total.toFixed(2)} €`;
-           }
-
-           // Mettre à jour le panier au chargement de la page
-           updateCart();
-       </script>
-
-    <!-- Reste du contenu -->
+        // Mettre à jour le panier au chargement de la page
+        updateCart();
+    </script>
 </body>
 
 </html>
