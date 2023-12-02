@@ -119,6 +119,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            text-decoration: none; /* Added to remove underline for anchor */
         }
 
         .buy-button:hover {
@@ -152,8 +153,9 @@
         </div>
         <div class="cart-total" id="cart-total">
             <span>Total: 0,00 €</span>
-            <button class="buy-button" onclick="updateCartAndRedirect()">Acheter</button>
-</div>
+            <!-- Modified the button to an anchor tag -->
+            <a class="buy-button" id="paypal-link" href="#" onclick="redirectToPaypal()">Acheter</a>
+        </div>
     </section>
 
     <script>
@@ -179,7 +181,6 @@
                 cartItem.classList.add('cart-item');
                 cartItem.innerHTML = `
                 <img src="image/${item.image}" alt="${item.productName}">
-
                     <div>
                         <p>${item.productName}</p>
                         <p>${item.price.toFixed(2)} €</p>
@@ -195,7 +196,7 @@
             });
 
             // Mettre à jour l'affichage du total du panier
-            cartTotal.innerHTML = `<span>Total: ${total.toFixed(2)} €</span><button class="buy-button">Acheter</button>`;
+            cartTotal.innerHTML = `<span>Total: ${total.toFixed(2)} €</span><a class="buy-button" id="paypal-link" href="#" onclick="redirectToPaypal(${total.toFixed(2)})">Acheter</a>`;
         }
 
         // Fonction pour supprimer un article du panier
@@ -212,13 +213,18 @@
             // Mettre à jour l'affichage du panier
             updateCart();
         }
-        function updateCartAndRedirect() {
-        // Mettre à jour le panier comme avant
-        updateCart();
 
-        // Rediriger vers la page de paiement
-        window.location.href = 'payment.html';
-    }
+        // Fonction pour rediriger vers PayPal avec le montant total
+        function redirectToPaypal(totalAmount) {
+            // Remplacez 'YOUR_PAYPAL_EMAIL' par votre adresse e-mail PayPal
+            const paypalEmail = 'https://paypal.me/kenya28836?country.x=FR&locale.x=fr_FR';
+
+            // URL de paiement PayPal
+            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${paypalEmail}&amount=${totalAmount}&currency_code=EUR`;
+
+            // Rediriger vers PayPal
+            window.location.href = paypalUrl;
+        }
 
         // Mettre à jour le panier au chargement de la page
         updateCart();
