@@ -89,16 +89,6 @@
             font-size: 13px;
             font-weight: bold;
         }
-
-
-        section {
-            text-align: center;
-            padding: 50px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-
         .product-container {
             display: flex;
             justify-content: space-around;
@@ -159,7 +149,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            width: 80%;
+            margin: 0 auto;
         }
 
         label {
@@ -222,18 +213,43 @@
         </div>
     </nav>
     <section>
-        <h1>Formulaire de Candidature</h1>
+        <h1>Candidature Staff</h1>
         <form action="https://formspree.io/f/xdorrjoq" method="POST">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">E-mail :</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Envoyer</button>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+            <label for="age">Âge :</label>
+            <input type="text" id="age" name="age" required>
+            <label for="heure-rp">Heure de RP :</label>
+            <input type="text" id="heure-rp" name="heure-rp" required>
+            <label for="experience-rp">Expérience RP :</label>
+            <input type="text" id="experience-rp" name="experience-rp" required>
+            <label for="pourquoi-vous">Pourquoi vous ? :</label>
+            <textarea id="pourquoi-vous" name="pourquoi-vous" required></textarea>
+            <label for="motivation">Motivation :</label>
+            <textarea id="motivation" name="motivation" required></textarea>
+            <button type="submit" onclick="formSubmit()">Envoyer</button>
         </form>
     </section>
     <script>
+
+        function formSubmit() {
+            alert("Formulaire envoyé !");
+            // Réinitialiser les champs du formulaire
+            document.getElementById("prenom").value = "";
+            document.getElementById("nom").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("heure-rp").value = "";
+            document.getElementById("experience-rp").value = "";
+            document.getElementById("pourquoi-vous").value = "";
+            document.getElementById("motivation").value = "";
+
+            // Rediriger vers la page d'accueil
+            window.location.href = "accueil.html";
+        }
+
+
            // Updated addToCart function to update the cart total
            function addToCart(price, productName, image) {
                // Récupérer le panier depuis le stockage local
