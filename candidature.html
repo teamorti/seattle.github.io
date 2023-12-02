@@ -5,14 +5,18 @@
     <meta charset="utf-8">
     <title>Boutique - Seattle RP</title>
     <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, blue, violet) fixed; /* Changement du dégradé pour s'étendre sur toute la page */
-            background-size: cover; /* Ajustement pour éviter la répétition */
-            animation: gradientAnimation 15s infinite alternate;
-        }
+    body {
+   font-family: 'Open Sans', sans-serif;
+   margin: 0;
+   padding: 0;
+   background: linear-gradient(to bottom, blue, violet) fixed;
+   background-size: cover;
+   animation: gradientAnimation 15s infinite alternate;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+}
 
         @keyframes gradientAnimation {
             0% {
@@ -133,25 +137,18 @@
         a:hover {
             text-decoration: underline;
         }
-        section {
-            text-align: center;
-            padding: 50px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            width: 80%;
-            margin-top: 20px;
-        }
+        section.form-section {
+      text-align: center;
+      max-width: 600px; /* Ajustez la largeur selon vos besoins */
+      margin: 0 auto;
+  }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 80%;
-            margin: 0 auto;
-        }
+  form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+  }
 
         label {
             color: #fff;
@@ -212,26 +209,32 @@
             </a>
         </div>
     </nav>
-    <section>
-        <h1>Candidature Staff</h1>
-        <form action="https://formspree.io/f/xdorrjoq" method="POST">
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" required>
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
-            <label for="age">Âge :</label>
-            <input type="text" id="age" name="age" required>
-            <label for="heure-rp">Heure de RP :</label>
-            <input type="text" id="heure-rp" name="heure-rp" required>
-            <label for="experience-rp">Expérience RP :</label>
-            <input type="text" id="experience-rp" name="experience-rp" required>
-            <label for="pourquoi-vous">Pourquoi vous ? :</label>
-            <textarea id="pourquoi-vous" name="pourquoi-vous" required></textarea>
-            <label for="motivation">Motivation :</label>
-            <textarea id="motivation" name="motivation" required></textarea>
-            <button type="submit" onclick="formSubmit()">Envoyer</button>
-        </form>
-    </section>
+    <section class="form-section">
+       <h1>Candidature Staff</h1>
+       <form action="https://formspree.io/f/xdorrjoq" method="POST">
+           <label for="prenom">Prénom :</label>
+           <input type="text" id="prenom" name="prenom" required>
+
+           <label for="nom">Nom :</label>
+           <input type="text" id="nom" name="nom" required>
+
+           <label for="age">Âge :</label>
+           <input type="text" id="age" name="age" required>
+
+           <label for="heure-rp">Heure de RP :</label>
+           <input type="text" id="heure-rp" name="heure-rp" required>
+
+           <label for="experience-rp">Expérience RP :</label>
+           <input type="text" id="experience-rp" name="experience-rp" required>
+
+           <label for="pourquoi-vous">Pourquoi vous ? :</label>
+           <textarea id="pourquoi-vous" name="pourquoi-vous" required></textarea>
+
+           <label for="motivation">Motivation :</label>
+           <textarea id="motivation" name="motivation" required></textarea>
+
+           <button type="submit">Envoyer</button>
+       </form>
     <script>
 
         function formSubmit() {

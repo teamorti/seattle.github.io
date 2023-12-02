@@ -152,8 +152,8 @@
         </div>
         <div class="cart-total" id="cart-total">
             <span>Total: 0,00 €</span>
-            <button class="buy-button">Acheter</button>
-        </div>
+            <button class="buy-button" onclick="updateCartAndRedirect()">Acheter</button>
+</div>
     </section>
 
     <script>
@@ -212,6 +212,13 @@
             // Mettre à jour l'affichage du panier
             updateCart();
         }
+        function updateCartAndRedirect() {
+        // Mettre à jour le panier comme avant
+        updateCart();
+
+        // Rediriger vers la page de paiement
+        window.location.href = 'payment.html';
+    }
 
         // Mettre à jour le panier au chargement de la page
         updateCart();
