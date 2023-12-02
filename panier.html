@@ -110,21 +110,22 @@
             color: #00aaff;
         }
 
-        .buy-button {
-            background-color: #00aaff;
-            color: white;
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none; /* Added to remove underline for anchor */
-        }
 
-        .buy-button:hover {
-            background-color: #0077cc;
-        }
+        .buy-button {
+           background-color: #00aaff;
+           color: white;
+           padding: 10px 20px;
+           font-size: 18px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           transition: background-color 0.3s;
+           text-decoration: none;
+       }
+
+       .buy-button:hover {
+           background-color: #0077cc;
+       }
 
         .delete {
             cursor: pointer;
@@ -147,88 +148,80 @@
     </nav>
 
     <section>
-        <h2>Votre Panier</h2>
-        <div class="cart-items" id="cart-items">
-            <!-- Les articles du panier seront affichés ici -->
-        </div>
-        <div class="cart-total" id="cart-total">
-            <span>Total: 0,00 €</span>
-            <!-- Modified the button to an anchor tag -->
-            <a class="buy-button" id="paypal-link" href="#" onclick="redirectToPaypal()">Acheter</a>
-        </div>
+       <h2>Votre Panier</h2>
+       <div class="cart-items" id="cart-items">
+           <!-- Les articles du panier seront affichés ici -->
+       </div>
+       <div class="cart-total" id="cart-total">
+           <span>Total: 0,00 €</span>
+           <!-- Bouton PayPal -->
+           <button class="buy-button" onclick="">Acheter</button>
+       </div>
+   </section>
     </section>
 
     <script>
-        // Fonction pour mettre à jour le panier
-        function updateCart() {
-            // Récupérer le panier depuis le stockage local
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    function createPaypalInvoice(total) {
+    // Rediriger l'utilisateur vers le lien PayPal avec le montant total
+    window.location.href = `https://paypal.me/kenya28836?country.x=FR&locale.x=fr_FR&amount=${total}`;
+}
+         // Fonction pour mettre à jour le panier
+         function updateCart() {
+             // Récupérer le panier depuis le stockage local
+             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Sélectionner l'élément du panier
-            let cartItems = document.getElementById('cart-items');
-            let cartTotal = document.getElementById('cart-total');
+             // Sélectionner l'élément du panier
+             let cartItems = document.getElementById('cart-items');
+             let cartTotal = document.getElementById('cart-total');
 
-            // Réinitialiser le contenu du panier
-            cartItems.innerHTML = '';
+             // Réinitialiser le contenu du panier
+             cartItems.innerHTML = '';
 
-            // Variables pour calculer le total du panier
-            let total = 0;
+             // Variables pour calculer le total du panier
+             let total = 0;
 
-            // Parcourir les articles du panier
-            cart.forEach((item, index) => {
-                // Créer un élément pour chaque article
-                let cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `
-                <img src="image/${item.image}" alt="${item.productName}">
-                    <div>
-                        <p>${item.productName}</p>
-                        <p>${item.price.toFixed(2)} €</p>
-                    </div>
-                    <span class="delete" onclick="removeFromCart(${index})">&#128465;</span>
-                `;
+             // Parcourir les articles du panier
+             cart.forEach((item, index) => {
+                 // Créer un élément pour chaque article
+                 let cartItem = document.createElement('div');
+                 cartItem.classList.add('cart-item');
+                 cartItem.innerHTML = `
+                 <img src="image/${item.image}" alt="${item.productName}">
+                     <div>
+                         <p>${item.productName}</p>
+                         <p>${item.price.toFixed(2)} €</p>
+                     </div>
+                     <span class="delete" onclick="removeFromCart(${index})">&#128465;</span>
+                 `;
 
-                // Ajouter l'élément au panier
-                cartItems.appendChild(cartItem);
+                 // Ajouter l'élément au panier
+                 cartItems.appendChild(cartItem);
 
-                // Ajouter le prix à total
-                total += item.price;
-            });
+                 // Ajouter le prix à total
+                 total += item.price;
+             });
 
-            // Mettre à jour l'affichage du total du panier
-            cartTotal.innerHTML = `<span>Total: ${total.toFixed(2)} €</span><a class="buy-button" id="paypal-link" href="#" onclick="redirectToPaypal(${total.toFixed(2)})">Acheter</a>`;
-        }
+             // Mettre à jour l'affichage du total du panier
+             cartTotal.innerHTML = `<span>Total: ${total.toFixed(2)} €</span><button class="buy-button" onclick="createPaypalInvoice(${total.toFixed(2)})">Acheter</button>`;
+         }
 
-        // Fonction pour supprimer un article du panier
-        function removeFromCart(index) {
-            // Récupérer le panier depuis le stockage local
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+         // Fonction pour supprimer un article du panier
+         function removeFromCart(index) {
+             // Récupérer le panier depuis le stockage local
+             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Supprimer l'article à l'index spécifié
-            cart.splice(index, 1);
+             // Supprimer l'article à l'index spécifié
+             cart.splice(index, 1);
 
-            // Mettre à jour le panier dans le stockage local
-            localStorage.setItem('cart', JSON.stringify(cart));
+             // Mettre à jour le panier dans le stockage local
+             localStorage.setItem('cart', JSON.stringify(cart));
 
-            // Mettre à jour l'affichage du panier
-            updateCart();
-        }
+             // Mettre à jour l'affichage du panier
+             updateCart();
+         }
+         // Mettre à jour le panier au chargement de la page
+         updateCart();
+     </script>
+ </body>
 
-        // Fonction pour rediriger vers PayPal avec le montant total
-        function redirectToPaypal(totalAmount) {
-            // Remplacez 'YOUR_PAYPAL_EMAIL' par votre adresse e-mail PayPal
-            const paypalEmail = 'https://paypal.me/kenya28836?country.x=FR&locale.x=fr_FR';
-
-            // URL de paiement PayPal
-            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${paypalEmail}&amount=${totalAmount}&currency_code=EUR`;
-
-            // Rediriger vers PayPal
-            window.location.href = paypalUrl;
-        }
-
-        // Mettre à jour le panier au chargement de la page
-        updateCart();
-    </script>
-</body>
-
-</html>
+ </html>
