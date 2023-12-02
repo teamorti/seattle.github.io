@@ -155,12 +155,31 @@
        <div class="cart-total" id="cart-total">
            <span>Total: 0,00 €</span>
            <!-- Bouton PayPal -->
-           <button class="buy-button" onclick="">Acheter</button>
+           <button id="payment-button">Payer</button>
        </div>
    </section>
     </section>
 
+
+    <!-- Votre fichier JavaScript -->
     <script>
+      const paymentButton = document.getElementById('payment-button');
+
+      paymentButton.addEventListener('click', async function() {
+        try {
+          const response = await fetch('https://votre-site-netlify.netlify.app/.netlify/functions/payment', {
+            method: 'POST',
+            // Ajoutez d'autres options de requête si nécessaire
+          });
+
+          const data = await response.json();
+
+          // Gérez la réponse (success, error) comme requis
+          console.log(data);
+        } catch (error) {
+          console.error('Erreur lors de la requête vers la fonction:', error);
+        }
+      });
     function createPaypalInvoice(total) {
     // Rediriger l'utilisateur vers le lien PayPal avec le montant total
     window.location.href = `https://paypal.me/kenya28836?country.x=FR&locale.x=fr_FR&amount=${total}`;
